@@ -1,0 +1,3 @@
+-R . CpdtEx
+./LogicProg.v
+./CpdtTactics.v
