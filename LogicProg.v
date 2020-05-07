@@ -47,38 +47,36 @@ Section group_laws.
   Hint Resolve right_inverse : core.
 
   (* Characterizing identity *)
-  Lemma chr_id_hint a :
-    a ∗ id = a ->
-    a ∗ inv a = id ->
-    (a ∗ a) ∗ (inv a) = a ∗ (a ∗ inv a) ->
-    (a ∗ a) ∗ (inv a) = a.
+  Lemma equals_id a b :
+    b = inv a ->
+    a ∗ b = id.
   Proof. crush. Qed.
 
-  Hint Resolve chr_id_hint : core.
-    
+  Hint Resolve equals_id : core.
+
+  Lemma simpl_inv a b :
+    a ∗ id = a ->
+    b ∗ inv b = id ->
+    a ∗ b ∗ inv b = a ∗ (b ∗ inv b) ->
+    a ∗ b ∗ inv b = a.
+  Proof. crush. Qed.
+
+  Hint Resolve simpl_inv : core.
+  
   Lemma chr_id a : (a ∗ a = a) -> (a = id).
   Proof. eauto 7. Qed.
 
   Hint Resolve chr_id : core.
   
   (* Left inverse *)
-  Lemma left_inv_hint a :
-    inv a ∗ id = inv a ->
-    inv a ∗ (id ∗ a) = (inv a ∗ id) ∗ a ->
-    a ∗ inv a = id ->
-    a ∗ (inv a ∗ a) = (a ∗ inv a) ∗ a ->
-    inv a ∗ a ∗ (inv a ∗ a) = inv a ∗ (a ∗ (inv a ∗ a)) -> 
-    inv a ∗ a ∗ (inv a ∗ a) = inv a ∗ a.
-  Proof. crush. Qed.
-  
-  Hint Resolve left_inv_hint : core.
-  
+
   Lemma left_inv a : (inv a) ∗ a = id.
-  Proof. eauto 10. Qed.
+  Proof. eauto 8. Qed.
 
   Hint Resolve left_inv : core.
 
   (* Left identity *)
+
   Lemma left_id_hint a :
     a ∗ id = a ->
     inv a ∗ a = id ->
@@ -95,21 +93,11 @@ Section group_laws.
   Hint Resolve left_id : core.
 
   (* Uniqueness of left identity *)
-  
-  Lemma uniq_left_id_hint a b c :
-    c ∗ id = c ->
-    a ∗ inv a = id ->
-    b = inv a ->
-    c ∗ a ∗ b = c ∗ (a ∗ b)  -> 
-    c ∗ a ∗ b = c.    
-  Proof. crush. Qed.
-
-  Hint Resolve uniq_left_id_hint : core.
 
   Lemma uniq_left_id p a :
     p ∗ a = a ->
     p = id.
-  Proof. eauto 7. Qed.
+  Proof. eauto 7. Qed. 
 
   Hint Resolve uniq_left_id : core.
 
