@@ -103,13 +103,6 @@ Section group_laws.
 
   (* Uniqueness of right inverse *)
 
-  (*
-  Lemma uniq_right_inv_hint a b :
-    
-    a ∗ b = id ->
-    b = inv a.
-  Proof. 
-   *)
   Lemma uniq_right_inv_hint a b c :
     c ∗ (a ∗ b) = b ->
     c ∗ id = inv a ->
