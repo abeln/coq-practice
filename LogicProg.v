@@ -101,7 +101,29 @@ Section group_laws.
 
   Hint Resolve uniq_left_id : core.
 
+  (* Uniqueness of right inverse *)
+
+  (*
+  Lemma uniq_right_inv_hint a b :
+    
+    a ∗ b = id ->
+    b = inv a.
+  Proof. 
+   *)
+  Lemma uniq_right_inv_hint a b c :
+    c ∗ (a ∗ b) = b ->
+    c ∗ id = inv a ->
+    a ∗ b = id ->
+    b = inv a.
+  Proof. crush. Qed.
+
+  Hint Resolve uniq_right_inv_hint : core.
   
+  Lemma uniq_right_inv a b :
+    a ∗ b = id ->
+    b = inv a.
+  Proof. eauto. Qed.
+ 
   
 End group_laws.
 
