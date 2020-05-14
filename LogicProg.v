@@ -116,7 +116,62 @@ Section group_laws.
     a ∗ b = id ->
     b = inv a.
   Proof. eauto. Qed.
- 
+
+  Hint Resolve uniq_right_inv : core.
+  
+  (* Uniqueness of left inverse *)
+
+  Lemma uniq_left_inv a b :
+    a ∗ b = id ->
+    a = inv b.
+  Proof.
+    eauto.
+  Qed.
+    
+  Hint Resolve uniq_left_inv : core.
+
+  (* Right cancellation *)
+  
+  Lemma right_cancel_hint a b x :
+    a ∗ id = a ->
+    b ∗ inv b = id ->
+    a ∗ b ∗ inv b = a ∗ (b ∗ inv b) ->
+    x = inv b ->
+    a ∗ b ∗ x = a.
+  Proof. crush. Qed.
+                 
+
+  Hint Resolve right_cancel_hint : core.
+               
+  Lemma right_cancel a b x :
+    a ∗ x = b ∗ x ->
+    a = b.
+  Proof.
+    (* eauto 11. 
+  Qed.
+     *)
+    admit. (* admitted because the proof search above is pretty slow *)
+  Admitted.
+
+  Hint Resolve right_cancel : core.
+    
+  (* TODO:
+     - left_cancel
+     - inverse_distr
+   *)
+
+  Lemma double_inv a : inv (inv a) = a.
+  Proof. eauto 6. Qed.
+
+  Hint Resolve double_inv : core.
+  
+  (* Identity inverse *)
+  
+  Lemma id_inv :
+    inv id = id.
+  Proof. eauto. Qed.
+
+  Hint Resolve id_inv : core.
   
 End group_laws.
 
